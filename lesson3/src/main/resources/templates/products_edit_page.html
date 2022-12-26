@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h2 align="center">Правка списка продуктов</h2>
+
+  <table align="center">
+      <tr>
+          <td><b>Номер</b></td>
+          <td><b>Наименование</b></td>
+          <td><b>Цена</b></td>
+          <td align="right"><b>Действие</b></td>
+      </tr>
+      <tr th:each="p : ${products}">
+          <td th:text="${p.getId()}" />
+          <td th:text="${p.getTitle()}"/>
+          <td th:text="${p.getCost()}" align="right"/>
+          <td align="right"><a th:href="@{'/products/remove/' + ${p.id}}">Удалить</a></td>
+      </tr>
+      <tr>
+          <td colspan="4"><p><a th:href="@{'/products/restore'}">Восстановить ошибочно удаленный продукт из корзины</a><br>
+              (при переходе к списку продуктов корзина очищается)</p></td>
+      </tr>
+  </table>
+
+  <table align="center">
+      <tr>
+          <td align="center"><b>Номер</b></td>
+          <td align="center"><b>Наименование</b></td>
+          <td align="center"><b>Цена</b></td>
+          <td align="center"><b>Действие</b></td>
+      </tr>
+      <tr>
+          <td colspan="4">
+              <form method="put" th:action="@{'/products/add'}" align="center"/>
+                  <input name="id" id ="id" placeholder="номер" type="number"/>
+                  <input name="title" id ="title" placeholder="наименование" type="text"/>
+                  <input name="cost" id ="cost" placeholder="цена" type="text"/>
+                  <button type="submit">Добавить в список</button>
+              </form>
+          </td>
+      </tr>
+  </table>
+  <p align="center"><a th:href="@{'/products/all'}">На страницу со списком продуктов</a></p>
+
+</body>
+</html>

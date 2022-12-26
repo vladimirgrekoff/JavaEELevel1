@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница продукта</title>
+</head>
+<body>
+  <h2 align="center">Информация о продукте</h2>
+  <table align="center">
+      <tr>
+          <td><b>ID:</b></td>
+          <td th:text="${product.getId()}" align="right"/></td>
+      </tr>
+      <tr>
+          <td><b>Наименоание:</b></td>
+          <td th:text="${product.getTitle()}" align="right"/></td>
+      </tr>
+      <tr>
+          <td><b>Цена:</b></td>
+          <td th:text="${product.getCost()}" align="right"/>
+      </tr>
+  </table>
+
+  <p align="center"><a th:href="@{'/products/all'}">На страницу со списком продуктов</a></p>
+</body>
+</html>

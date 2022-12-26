@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h2 align="center">Список продуктов</h2>
+
+  <table align="center">
+      <tr>
+          <td align="center"><b>Номер</b></td>
+          <td align="center"><b>Наименование</b></td>
+          <td align="center"><b>Цена</b></td>
+          <td align="center"><b>Информация</b></td>
+      </tr>
+      <tr th:each="p : ${products}">
+          <td th:text="${p.getId()}" />
+          <td th:text="${p.getTitle()}"/>
+          <td th:text="${p.getCost()}" align="right"/>
+          <td align="right"><a th:href="@{'/products/' + ${p.id}}">Подробно</a></td>
+      </tr>
+      <tr>
+          <td colspan="3"><i>Всего продуктов в списке:</i></td>
+          <td th:text="${products.size()}" align="right"></td>
+      </tr>
+  </table>
+
+
+  <p align="center"><a th:href="@{'/products/edit'}">Изменить список продуктов</a></p>
+</body>
+</html>
