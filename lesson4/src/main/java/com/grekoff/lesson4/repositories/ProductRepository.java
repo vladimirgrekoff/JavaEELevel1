@@ -2,21 +2,25 @@ package com.grekoff.lesson4.repositories;
 
 import com.grekoff.lesson4.data.Product;
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+//@Component
 public class ProductRepository {
+
     private List<Product> products;
 
     @PostConstruct
     public void init() {
         products = new ArrayList<>(List.of(
-                new Product(1, 1L, "Хлеб", 40f),
-                new Product(2, 2L, "Масло", 100f),
-                new Product(3, 3L, "Сыр", 150f),
+                new Product(1, 1L, "Хлеб",  40.20f),
+                new Product(2, 2L, "Масло", 100.45f),
+                new Product(3, 3L, "Сыр",  150.99f),
                 new Product(4, 4L, "Мандарины", 130.50f),
                 new Product(5, 5L, "Яблоки", 150.20f)
         ));
@@ -70,7 +74,6 @@ public class ProductRepository {
     }
     public void deleteById(Long id){
         products.removeIf(product -> product.getId().equals(id));
-//        products.remove(productRemoved);
         checkIndex(products);
     }
 }

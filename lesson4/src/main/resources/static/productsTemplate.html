@@ -14,8 +14,11 @@
             <td>{{p.title}}</td>
             <td>{{p.cost}}</td>
         </tr>
+        <tr>
+            <td colspan="3"><b><i>Всего продуктов в списке:</i></b></td>
+            <td align="left"><b>{{ProductsList.length}}</b></td>
+        </tr>
         </tbody>
     </table>
-
     <p align="center"><button class="btn btn-warning" ng-click="showEditPage()">Редактировать список продуктов</button></p>
 </div>

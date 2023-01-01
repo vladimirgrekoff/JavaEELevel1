@@ -1,6 +1,14 @@
 app.controller('productsController', function ($scope, $http, $location, $templateCache) {
     const contextPath = 'http://localhost:8189/app';
 
+
+
+    $scope.$on('routeChangeStart', function(event, next, current) {
+        if (typeof(current) !== 'undefined') {
+            $templateCache.remove(next.templateUrl);
+        }
+    });
+
     $scope.loadProducts = function () {
         $http.get(contextPath + '/products')
             .then(function (response) {
@@ -12,13 +20,9 @@ app.controller('productsController', function ($scope, $http, $location, $templa
         $location.path("edit_products");
     };
 
-    $scope.$on('routeChangeStart', function(event, next, current) {
-        if (typeof(current) !== 'undefined') {
-            $templateCache.remove(next.templateUrl);
-        console.log(next);
-        console.log(current);
-        }
-    });
+    $scope.showCartPage = function() {
+        $location.path("restore");
+    };
 
     $scope.loadProducts();
 

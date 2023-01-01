@@ -1,6 +1,14 @@
 app.controller('editController', function ($scope, $http, $location, $templateCache) {
     const contextPath = 'http://localhost:8189/app';
 
+
+
+    $scope.$on('routeChangeStart', function(event, next, current) {
+        if (typeof(current) !== 'undefined') {
+            $templateCache.remove(next.templateUrl);
+        }
+    });
+
     $scope.loadEditProducts = function () {
         $http.get(contextPath + '/edit_products')
             .then(function (response) {
@@ -11,6 +19,7 @@ app.controller('editController', function ($scope, $http, $location, $templateCa
     $scope.deleteProduct = function (productId){
         $http.get(contextPath + '/edit_products/delete/' + productId)
             .then(function (response) {
+            $scope.productId = null;
             $scope.loadEditProducts();
         });
     };
@@ -26,10 +35,10 @@ app.controller('editController', function ($scope, $http, $location, $templateCa
                     cost: cost
                 }
             }).then(function (response) {
-                $scope.index=null;
-                $scope.id=null;
-                $scope.title=null;
-                $scope.cost=null;
+                $scope.index = null;
+                $scope.id = null;
+                $scope.title = null;
+                $scope.cost = null;
                 $scope.loadEditProducts();
         });
     };
@@ -43,15 +52,11 @@ app.controller('editController', function ($scope, $http, $location, $templateCa
                 delta: delta
             }
         }).then(function (response){
+            $scope.productId = null;
+            $scope.delta = null;
             $scope.loadEditProducts();
         });
     };
-
-    $scope.$on('routeChangeStart', function(event, next, current) {
-        if (typeof(current) !== 'undefined') {
-            $templateCache.remove(next.templateUrl);
-        }
-    });
 
     $scope.showProductsPage = function() {
         $location.path("products");

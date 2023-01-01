@@ -1,0 +1,25 @@
+<div class="container" ng-controller="cartController">
+    <h2 align="center">Корзина удаленных продуктов</h2>
+    <table class="table table-hover" cellpadding="0" cellspacing="0" ng-model="ProductsInCart">
+        <tr>
+            <td align="center"><b>Номер</b></td>
+            <td align="center"><b>ID</b></td>
+            <td align="center"><b>Наименование</b></td>
+            <td align="center"><b>Цена</b></td>
+            <td align="center"><b>Действие</b></td>
+        </tr>
+        <tr ng-repeat="p in ProductsInCart">
+            <td align="center">{{p.index}}</td>
+            <td align="center">{{p.id}}</td>
+            <td align="center">{{p.title}}</td>
+            <td align="center">{{p.cost}}</td>
+            <td align="center"><button type="button" class="btn btn-warning" ng-click="restoreProduct(p.id + p.title + p.cost)">Восстановить</button></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td colspan="3"><b><i>Всего продуктов в корзине:</i></b></td>
+            <td align="center" align="right"><b>{{ProductsInCart.length}}</b></td>
+        </tr>
+    </table>
+    <p align="center"><button class="btn btn-success" ng-click="showEditPage()">Вернуться к правке списка продуктов</button></p>
+</div>

@@ -1,13 +1,11 @@
 package com.grekoff.lesson4.controllers;
 
 import com.grekoff.lesson4.data.Product;
+import com.grekoff.lesson4.services.CartService;
 import com.grekoff.lesson4.services.EditProductsService;
 import com.grekoff.lesson4.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,34 +13,51 @@ import java.util.List;
 @RestController
 public class ProductController {
 
+    @Autowired
     private ProductService productService;
+
     @Autowired
     private EditProductsService editProductsService;
+
+    @Autowired
+    private CartService cartService;
 
 
     public ProductService getProductService() {
         return productService;
     }
 
+    public CartService getCartService() {
+        return cartService;
+    }
 
+    public EditProductsService getEditProductsService() {
+        return editProductsService;
+    }
 
-
-
-    public ProductController(ProductService productService, EditProductsService editProductsService) {
+    public ProductController(ProductService productService, EditProductsService editProductsService, CartService cartService) {
         this.productService = productService;
         this.editProductsService = editProductsService;
+        this.cartService = cartService;
         editProductsService.setProductController(this);
+        cartService.setProductController(this);
     }
 
 
     @GetMapping("/products")
     public List<Product> getAllProducts() {
+        cartService.checkCart();
         return productService.getAllProducts();
     }
 
     @GetMapping("/edit_products")
     public List<Product> showEditPage() {
         return editProductsService.getAllProducts();
+    }
+
+    @GetMapping("/restore")
+    public List<Product> showCartPage() {
+        return cartService.getProductsInCart();
     }
 
     @GetMapping("/edit_products/delete/{id}")
@@ -62,7 +77,11 @@ public class ProductController {
         showEditPage();
     }
 
-
+    @GetMapping("/restore/{findString}")
+    public void showCartProductsPage(@PathVariable String findString) {
+        cartService.restoreProduct(findString);
+        showCartPage();
+    }
 
 
 }

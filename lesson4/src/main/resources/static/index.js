@@ -8,14 +8,18 @@ var app = angular.module('app', ['ngRoute'])
     })
     .when('/edit_products',
     {
-    templateUrl: 'editProductsTemplate.html',
+    templateUrl:'editProductsTemplate.html',
     controller:'editController',
     controllerAs:'edit_products'
+    })
+    .when('/restore',
+    {
+    templateUrl:'cartTemplate.html',
+    controller:'cartController',
+    controllerAs:'restore'
     })
     .otherwise({
     redirectTo: '/products'
     });
-
-
 
 });
