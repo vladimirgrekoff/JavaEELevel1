@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <h2 align="center">Список продуктов</h2>
+
+  <table class="table" align="center">
+      <tr>
+          <td><b>Номер</b></td>
+          <td><b>Наименование</b></td>
+          <td><b>Цена</b></td>
+          <td align="right"><b>Информация</b></td>
+      </tr>
+      <tr th:each="p : ${products}">
+          <td th:text="${p.getId()}" />
+          <td th:text="${p.getTitle()}"/>
+          <td th:text="${p.getPrice()}"/>
+          <td align="right"><a class="btn btn-primary" th:href="@{'/products/' + ${p.id}}">Подробно</a></td>
+      </tr>
+      <tr>
+          <td align="center" colspan="2"><b><i>Всего продуктов в списке:</i></b></td>
+          <td th:text="${products.size()}" colspan="2" align="center"></td>
+      </tr>
+      <tr>
+          <td colspan="2"><p align="center"><a class="btn btn-warning" th:href="@{'/edit'}">Изменить список продуктов</a></p></td>
+
+          <td colspan="2"><p align="center"><a class="btn btn-info" th:href="@{'/products_search_page'}">На страницу поиска продуктов</a></p></td>
+      </tr>
+
+  </table>
+</div>
+</body>
+</html>
