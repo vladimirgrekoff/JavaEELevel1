@@ -19,7 +19,7 @@
             <td align="center"><b>Найти</b></td>
         </tr>
         <tr>
-            <form name="min" method="GET" th:action="@{'/products/find_by_min'}" align="center"/>
+            <form name="min" method="GET" th:action="@{'/products/find_by_min'}" align="center">
             <td>
                 <input name="min" id ="min" placeholder="цена" type="number"/>
             </td>
@@ -28,7 +28,7 @@
             </td>
             </form>
             <td><p>&nbsp;</p></td>
-            <form name="max" method="GET" th:action="@{'/products/find_by_max'}" align="center"/>
+            <form name="max" method="GET" th:action="@{'/products/find_by_max'}" align="center">
             <td>
                 <input name="max" id ="max" placeholder="цена" type="number"/>
             </td>
@@ -45,7 +45,7 @@
         <td align="center"><b>Найти</b></td>
     </tr>
     <tr>
-        <form name="range" method="GET" th:action="@{'/products/find_between_price'}" align="center"/>
+        <form name="range" method="GET" th:action="@{'/products/find_between_price'}" align="center">
         <td>
             <input name="minPrice" id ="minPrice" placeholder="минимальная цена" type="number"/>
         </td>
