@@ -1,0 +1,57 @@
+<div class="container" ng-controller="searchController">
+    <h3 align="center">Поиск продуктов по фильтру</h3>
+    <table class="table table-hover" cellpadding="0" cellspacing="0" align="center">
+        <tr>
+            <td align="center"><b>Цена</b></td>
+            <td align="center"><b>Найти</b></td>
+            <td><p>&nbsp;</p></td>
+            <td align="center"><b>Цена</b></td>
+            <td align="center"><b>Найти</b></td>
+        </tr>
+        <tr>
+            <form>
+            <td><input name="min" id ="min" ng-model="min" placeholder="минимальная цена" type="number"/></td>
+            <td><button class="btn btn-primary" type="submit" ng-click="searchByMinPrice(min)">Найти не дешевле цены</button></td>
+            </form>
+            <td>&nbsp;</td>
+            <form>
+            <td><input name="max" id ="max" ng-model="max" placeholder="максимальная цена" type="number"/></td>
+            <td><button class="btn btn-primary" type="submit" ng-click="searchByMaxPrice(max)">Найти не дороже цены</button></td>
+            </form>
+        </tr>
+    </table>
+    <p>&nbsp;</p>
+    <table class="table table-hover" cellpadding="0" cellspacing="0" align="center">
+    <tr>
+        <td align="center"><b>От цены</b></td>
+        <td align="center"><b>До цены</b></td>
+        <td align="center"><b>Найти</b></td>
+    </tr>
+    <tr>
+        <form align="center">
+        <td><input name="minPrice" id ="minPrice" placeholder="минимальная цена" type="number" ng-model="minPrice"/></td>
+        <td><input name="maxPrice" id ="maxPrice" placeholder="максимальная цена" type="number" ng-model="maxPrice"/></td>
+        <td><button class="btn btn-primary" type="submit" ng-click="searchByBetweenPrice(minPrice, maxPrice)">Найти в диапазоне цен</button></td>
+        </form>
+    </tr>
+    </table>
+    <table class="table table-hover" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><b>ID</b></td>
+            <td><b>Наименование продукта</b></td>
+            <td><b>Стоимость</b></td>
+        </tr>
+        <tbody>
+        <tr ng-repeat="p in ProductsList">
+            <td>{{p.id}}</td>
+            <td>{{p.title}}</td>
+            <td>{{p.price}}</td>
+        </tr>
+        <tr>
+            <td colspan="2"><b><i>Всего продуктов в списке:</i></b></td>
+            <td align="left"><b>{{ProductsList.length}}</b></td>
+        </tr>
+        </tbody>
+    </table>
+    <p align="center"><a class="btn btn-success" ng-click="showProductsPage()">На страницу со списком продуктов</a></p>
+</div>
