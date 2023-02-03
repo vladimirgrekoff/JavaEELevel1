@@ -1,0 +1,31 @@
+<div class="container"  ng-controller="navigationController">
+    <table class="table table-striped" width="80%" align="center">
+        <thead class="thead-light">
+        <tr>
+            <td align="center"><h1><b>Вы можете перейти:</b></h1></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>на страницу с профилем:</td>
+            <td><button  class="btn btn-primary" ng-click="showProfilePage()">Профиль</button></td>
+        </tr>
+        <tr>
+            <td>на страницу выбора товаров:</td>
+            <td><button class="btn btn-primary" ng-click="showCartPage()">Выбор товаров</button></td>
+        </tr>
+        <tr>
+            <td>на страницу редактирования списка товаров:</td>
+            <td><button class="btn btn-primary" ng-click="showProductsPage()">Правка списка</button></td>
+        </tr>
+        <tr>
+            <td>на страницу редактирования списка пользователей:</td>
+            <td><button class="btn btn-primary" ng-click="showUsersPage()">Правка списка</button></td>
+        </tr>
+        <tr>
+            <td>покинуть сайт:</td>
+            <td><button class="btn btn-danger" ng-click="logout()">Выход</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

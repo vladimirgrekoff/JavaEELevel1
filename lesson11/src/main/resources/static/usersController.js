@@ -10,9 +10,10 @@ app.controller("usersController", function($scope, $http, $location, $templateCa
 
 
     $scope.loadUsers = function () {
-        $http.post(contextPath + '/users')
+        $http.get(contextPath + '/users')
             .then(function (response) {
-                $scope.UsersList = response.data.content;
+            console.log('ответ: ' + response.data);//////////////////////////////////////
+                $scope.UsersList = response.data;
             });
     };
 

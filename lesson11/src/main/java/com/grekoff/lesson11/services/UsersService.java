@@ -1,14 +1,15 @@
 package com.grekoff.lesson11.services;
 
 
+import com.grekoff.lesson11.converters.UserConverter;
 import com.grekoff.lesson11.dto.UserDto;
-import com.grekoff.lesson11.entities.Product;
 import com.grekoff.lesson11.entities.Role;
 import com.grekoff.lesson11.entities.User;
 import com.grekoff.lesson11.exceptions.ResourceNotFoundException;
 import com.grekoff.lesson11.repositories.UsersRepository;
 import com.grekoff.lesson11.repositories.specifications.UsersSpecifications;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
@@ -20,9 +21,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,10 +29,22 @@ import java.util.stream.Collectors;
 public class UsersService implements UserDetailsService {
 
     private final UsersRepository usersRepository;
+    private UserConverter userConverter;
+    @Autowired
+    public void setUserConverter(UserConverter userConverter) {
+        this.userConverter = userConverter;
+    }
 
+    public List<UserDto> findAll() {
+        List<UserDto> userDtoList = new ArrayList<>();
+        List<User> userList = usersRepository.findAll();
+        for (User u: userList) {
+            UserDto userDto = userConverter.entityToDto(u);
+            userDtoList.add(userDto);///////////////////////////////////////
+            System.out.println(userDto);
+        }
 
-    public List<User> findAll() {
-            return usersRepository.findAll();
+        return userDtoList;
     }
 
 
@@ -66,7 +77,6 @@ public class UsersService implements UserDetailsService {
         user.setPassword(userDto.getPassword());
         user.setEmail(userDto.getEmail());
         return user;
-
     }
 
     public void deleteById(Long id) {

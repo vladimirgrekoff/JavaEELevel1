@@ -7,6 +7,8 @@ import com.grekoff.lesson11.exceptions.ResourceNotFoundException;
 import com.grekoff.lesson11.services.UsersService;
 import com.grekoff.lesson11.validators.UserValidator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +21,7 @@ import java.util.stream.Collectors;
 public class usersController {
 
     private final UsersService usersService;
-
+    @Autowired
     private UserConverter userConverter;
 
     private final UserValidator userValidator;
@@ -28,8 +30,8 @@ public class usersController {
     // GET http://localhost:8189/lesson11
 
     @GetMapping
-    public List<User> getAllUsers() {
-         return usersService.findAll();
+    public List<UserDto> getAllUsers() {
+        return usersService.findAll();
     }
 
     @GetMapping("/{id}")

@@ -42,9 +42,11 @@ public class SecurityConfig {
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/verification")
+//                .successForwardUrl("/navigation")
                 .and()
                 .logout()
-                .logoutSuccessUrl("/welcome")
+//                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID");
         return http.build();

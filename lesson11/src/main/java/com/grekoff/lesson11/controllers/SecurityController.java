@@ -12,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -41,6 +42,8 @@ public class SecurityController {
         try {
 //            authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getName(), authRequest.getPassword()));
             principal = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+//            authentication = (Authentication) principal;
+//            authenticationManager.authenticate(authentication).setAuthenticated(true);
             System.out.println(principal);/////////////////////////////////////////////
         } catch (BadCredentialsException e) {
             throw  new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Имя или пароль неправильны", e);

@@ -27,7 +27,7 @@ app.controller("loginController", function($rootScope, $scope, $http, $location,
                 $window.sessionStorage.setItem('userData', JSON.stringify(userData));
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + token;
                 $rootScope.authenticated = true;
-                $location.path('/welcome');
+                $location.path('/navigation');
             } else {
                 $rootScope.authenticated = false;
             }
@@ -45,7 +45,7 @@ app.controller("loginController", function($rootScope, $scope, $http, $location,
 //        authenticate($scope.credentials, function() {
         authenticate($scope.username, $scope.password, function() {
              if ($rootScope.authenticated) {
-                 $location.path('/welcome');
+                 $location.path('/navigation');
                  $scope.error = false;
              } else {
                  $location.path('/login');

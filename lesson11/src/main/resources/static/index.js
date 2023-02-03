@@ -12,6 +12,12 @@ var app = angular.module('lesson11', ['ngRoute'])
     controller:'loginController',
     controllerAs:'login'
     })
+    .when('/navigation',
+    {
+    templateUrl:'navigationTemplate.html',
+    controller:'navigationController',
+    controllerAs:'navigation'
+    })
     .when('/cart',
     {
     templateUrl:'cartTemplate.html',
@@ -31,7 +37,7 @@ var app = angular.module('lesson11', ['ngRoute'])
     controllerAs:'users'
     })
     .otherwise({
-    redirectTo: '/welcome'
+    redirectTo: 'welcome'
     });
 
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';

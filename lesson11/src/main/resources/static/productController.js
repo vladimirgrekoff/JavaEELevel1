@@ -20,6 +20,7 @@ app.controller("productController", function($scope, $http, $location, $template
                     limit: limit
                 }
             }).then(function (response) {
+            console.log('ответ: ' + response.data.content);//////////////////////////////////////
                 $scope.ProductsList = response.data.content;
         });
     };
@@ -58,9 +59,9 @@ app.controller("productController", function($scope, $http, $location, $template
     $scope.logout = function() {
       $http.post('logout', {})
       .then(function() {
-        $rootScope.authenticated = false;
+//        $rootScope.authenticated = false;
         $location.path('welcome');
-        $rootScope.authenticated = false;
+//        $rootScope.authenticated = false;
       });
     };
 
