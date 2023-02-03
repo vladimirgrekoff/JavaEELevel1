@@ -8,17 +8,15 @@ import com.grekoff.lesson11.services.UsersService;
 import com.grekoff.lesson11.validators.UserValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @RestController
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
-public class usersController {
+public class UsersController {
 
     private final UsersService usersService;
     @Autowired
