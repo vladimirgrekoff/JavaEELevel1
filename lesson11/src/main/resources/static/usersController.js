@@ -33,14 +33,14 @@ app.controller("usersController", function($scope, $http, $location, $templateCa
     $scope.deleteUser = function (userId) {
         $http.delete(contextPath + '/users/' + userId)
             .then(function (response) {
-            $location.path(response);///////////////////////
+            console.log('удаление пользователя');///////////////////////
                 $scope.loadUsers();
             });
     };
 
-    $scope.showLoginPage = function () {
-    console.log('перейти к форме');
-        $location.path('login');///////////////////////
+    $scope.showNavigationPage = function () {
+    console.log('перейти на страницу навигации');///////////////////////
+        $location.path('navigation');
     };
 
     $scope.logout = function() {

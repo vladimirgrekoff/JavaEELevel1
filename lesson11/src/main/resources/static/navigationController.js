@@ -9,23 +9,23 @@ app.controller("navigationController", function($rootScope, $scope, $http, $loca
 
 
     $scope.showProfilePage = function () {
-    console.log('перейти к профилю');
-        $location.path('profile');///////////////////////
+    console.log('перейти к профилю');///////////////////////
+        $location.path('profile');
     };
 
     $scope.showCartPage = function () {
-    console.log('перейти к выбору продуктов');
-        $location.path('cart');///////////////////////
+    console.log('перейти к выбору продуктов');///////////////////////
+        $location.path('cart');
     };
 
     $scope.showProductsPage = function () {
-    console.log('перейти к правке списка продуктов');
-        $location.path('products');///////////////////////
+    console.log('перейти к правке списка продуктов');///////////////////////
+        $location.path('products');
     };
 
     $scope.showUsersPage = function () {
-    console.log('перейти к правке списка пользователей');
-        $location.path('users');///////////////////////
+    console.log('перейти к правке списка пользователей');///////////////////////
+        $location.path('users');
     };
 
 

@@ -51,9 +51,9 @@ app.controller("productController", function($scope, $http, $location, $template
             });
     };
 
-    $scope.showLoginPage = function () {
-    console.log('перейти к форме');
-        $location.path('login');///////////////////////
+    $scope.showNavigationPage = function () {
+    console.log('перейти на страницу навигации');///////////////////////
+        $location.path('navigation');
     };
 
     $scope.logout = function() {

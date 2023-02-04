@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/**", "/resources/**", "/resources/templates/**", "/api/v1/verification/**").permitAll()
 //                .requestMatchers("/api/v1/admin/**","/api/v1/profile/**","/api/v1/authenticated/**").authenticated()
+                .requestMatchers("/h2-console/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/api/v1/cart/**").hasAnyRole("USER", "ADMIN")
                 .requestMatchers("/profile/**").hasAuthority("READ_PROFILE")

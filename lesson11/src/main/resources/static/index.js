@@ -1,5 +1,6 @@
 var app = angular.module('lesson11', ['ngRoute'])
     .config(function ($routeProvider, $httpProvider) {
+
     $routeProvider.when('/welcome',
     {
     templateUrl:'welcomeTemplate.html',
