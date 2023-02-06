@@ -4,16 +4,23 @@ package com.grekoff.lesson11.controllers;
 import com.grekoff.lesson11.entities.User;
 import com.grekoff.lesson11.services.UsersService;
 import jakarta.annotation.security.PermitAll;
+import jakarta.servlet.SessionTrackingMode;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.context.SecurityContextHolderFilter;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.method.annotation.SessionStatusMethodArgumentResolver;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
@@ -37,18 +44,21 @@ public class SecurityController {
     public Principal verification(@RequestParam(name = "username") String username, @RequestParam(name = "password") String password){
         System.out.println("вызов login");/////////////////////////////////////////////
         System.out.println(username);/////////////////////////////////////////////
-//        Authentication authentication;
+        Authentication authentication;
         Principal principal;
         try {
 //            authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getName(), authRequest.getPassword()));
             principal = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 //            authentication = (Authentication) principal;
 //            authenticationManager.authenticate(authentication).setAuthenticated(true);
+//            SecurityContextHolder.getContext().setAuthentication(authentication);
             System.out.println(principal);/////////////////////////////////////////////
         } catch (BadCredentialsException e) {
             throw  new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Имя или пароль неправильны", e);
         }
+
 //        return new AuthResponse(authentication.toString());
+
         return principal;
     }
 
