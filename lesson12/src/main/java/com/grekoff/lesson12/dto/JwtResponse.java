@@ -9,6 +9,5 @@ import java.util.Collection;
 @Data
 @AllArgsConstructor
 public class JwtResponse {
-//    private Collection<Role> roles;
     private String token;
 }

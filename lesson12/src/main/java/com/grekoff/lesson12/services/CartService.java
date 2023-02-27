@@ -14,9 +14,6 @@ public class CartService {
     private ProductsController productsController;
 
 
-//    public void setProductController(ProductsController productsController) {
-//        this.productsController = productsController;
-//    }
 
     public SelectedProduct findById(Long id) {
         return cartRepository.findById(id);

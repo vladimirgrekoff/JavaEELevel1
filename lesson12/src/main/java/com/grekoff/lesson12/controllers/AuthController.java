@@ -43,19 +43,12 @@ public class AuthController {
             return new ResponseEntity<>(new AppError(HttpStatus.UNAUTHORIZED.value(), "Имя пользователя или пароль не найдены"), HttpStatus.UNAUTHORIZED);
         }
         UserDetails userDetails = usersService.loadUserByUsername(authRequest.getUsername());
-//        Collection roles = userDetails.getAuthorities();//////////////////////////////////
         String token = jwtTokenUtil.generateToken(userDetails);
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
 
     @RequestMapping("/user")
-//    public Principal user(Principal user) {
-//    public Collection<? extends org.springframework.security.core.GrantedAuthority> user(HttpServletRequest request) {
-//        System.out.println("вызов user");
-//        Authentication a = SecurityContextHolder.getContext().getAuthentication();
-//        System.out.println("Authentication " + a);
-//        return a.getAuthorities();
         public Principal user(HttpServletRequest request) {
             System.out.println("вызов user");
             String authToken = request.getHeader("Authorization").substring("Basic ".length()).trim();

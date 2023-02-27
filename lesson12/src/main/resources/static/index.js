@@ -59,6 +59,5 @@ var app = angular.module('lesson12', ['ngRoute', 'ngStorage'])
     redirectTo: 'welcome'
     });
 
-//    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 
 });

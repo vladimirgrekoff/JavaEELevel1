@@ -49,12 +49,10 @@ app.controller("welcomeController", function($rootScope, $scope, $http, $locatio
     };
 
     $scope.showLoginPage = function () {
-    console.log('перейти к форме');///////////////////////
         $location.path('login');
     };
 
     $scope.showRegistrationPage = function () {
-    console.log('перейти к форме');///////////////////////
         $location.path('registration');
     };
 

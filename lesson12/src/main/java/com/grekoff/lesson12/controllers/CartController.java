@@ -41,7 +41,6 @@ public class CartController {
     }
 
     @PostMapping
-//    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public SelectedProductDto addNewProduct(@RequestBody ProductDto productDto) {
         productValidator.validate(productDto);
         SelectedProduct selectedProduct = productConverter.dtoToSelectedProduct(productDto);

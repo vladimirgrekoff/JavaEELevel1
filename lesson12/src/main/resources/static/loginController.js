@@ -20,7 +20,7 @@ app.controller("loginController", function($rootScope, $scope, $http, $location,
 
                     $scope.user.username = null;
                     $scope.user.password = null;
-                    $scope.getCurrentUserRoles();/////////////////////////////////
+                    $scope.getCurrentUserRoles();
                     $location.path('/navigation');
                 }
             }, function errorCallback(response) {
@@ -100,8 +100,6 @@ app.controller("loginController", function($rootScope, $scope, $http, $location,
             for (i=0; i<roles.length; i++){
                 if (roles[i].name == 'ROLE_USER') {
                     $localStorage.defaultRole = roles[i];
-//                    console.log('id роли ' + $localStorage.defaultRole.id);////////////////////////////////////////
-//                    console.log('имя роли ' + $localStorage.defaultRole.name);////////////////////////////////////////
                 }
             }
         }

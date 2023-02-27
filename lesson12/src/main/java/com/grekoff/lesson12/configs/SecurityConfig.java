@@ -30,7 +30,6 @@ import java.util.Base64;
 public class SecurityConfig {
 
     private final JwtRequestFilter jwtRequestFilter;
-//    private final UsersService usersService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -41,8 +40,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/v1/cart/**").hasAnyRole("USER", "MANAGER", "ADMIN")
                 .requestMatchers("/api/v1/profile/**", "/welcome", "/navigation").permitAll()
                 .requestMatchers("/**", "/resources/**", "/resources/templates/**", "/api/v1/auth/**").permitAll()
-//                .requestMatchers("/api/v1/admin/**","/api/v1/profile/**","/api/v1/authenticated/**").authenticated()
-//                .anyRequest().denyAll()
+
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -50,17 +48,9 @@ public class SecurityConfig {
                 .headers().frameOptions().disable()
                 .and()
                 .exceptionHandling()
-//                .exceptionHandling().accessDeniedPage("/accessDenied")
-//                .and()
-//                .httpBasic()
                 .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
-//                .and()
-//                .formLogin()
-//                .loginProcessingUrl("/auth/token")
-//                .successForwardUrl("/navigation")
                 .and()
                 .logout()
-//                .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID");
@@ -93,37 +83,5 @@ public class SecurityConfig {
     }
 
 
-//    @Bean
-//    public AuthenticationManager  authenticationManager(HttpSecurity http) throws Exception {
-//        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject (AuthenticationManagerBuilder.class);
-//        authenticationManagerBuilder.userDetailsService(usersService).passwordEncoder(passwordEncoder());
-//        return authenticationManagerBuilder.build();
-//    }
 
-//    @Bean
-//    public DaoAuthenticationProvider daoAuthenticationProvider() {
-//        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-//        authenticationProvider.setUserDetailsService(usersService);
-//        authenticationProvider.setPasswordEncoder(passwordEncoder());
-//        return authenticationProvider;
-//    }
-
-//    @Bean
-//    public AuthenticationManager authenticationManager(HttpSecurity http, BCryptPasswordEncoder bCryptPasswordEncoder, UsersService usersService) throws Exception {
-//        return http.getSharedObject(AuthenticationManagerBuilder.class)
-//                .userDetailsService(usersService)
-//                .passwordEncoder(bCryptPasswordEncoder)
-//                .and()
-//                .build();
-//    }
-
-//    @Bean
-//    public Base64Codec base64Codec() {
-//        return new Base64Codec();
-//    }
-
-//    @Bean
-//    public JwtRequestFilter(JwtTokenUtil jwtTokenUtil) {
-//        return new JwtRequestFilter(jwtTokenUtil);
-//    }
 }
