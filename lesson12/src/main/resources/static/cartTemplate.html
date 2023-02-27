@@ -1,0 +1,106 @@
+<div class="container" ng-controller="cartController">
+    <h1 align="center">Выбор продуктов</h1>
+<!--    <p>&nbsp;</p>-->
+    <table class="table" cellpadding="0" cellspacing="0" width="80%" align="center">
+        <tr>
+            <td width="40%">
+                <form novalidate ng-submit="loadProducts()">
+                    <div class="form-floating input-group-sm">
+                        <input type="text" class="form-control" id="filterTitle" placeholder="Наименование продукта" ng-model="filter.part_title">
+                    </div>
+                    <p></p>
+                    <div class="form-floating input-group-sm">
+                        <input type="number" class="form-control" id="filterMinPrice" placeholder="Мин. цена" ng-model="filter.min_price">
+                    </div>
+                    <p></p>
+                    <div class="form-floating input-group-sm">
+                        <input type="number" class="form-control" id="filterMaxPrice" placeholder="Макс. цена" ng-model="filter.max_price">
+                    </div>
+                    <p></p>
+                    <button class="btn btn-outline-warning btn-sm" style="width: 100%;" type="submit">Применить</button>
+                </form>
+            </td>
+            <!--        </tr>-->
+            <td width="60%">
+                <table align="center">
+                    <tr>
+                        <td ><b>Перейти:</b></td>
+                        <td>&nbsp;</td>
+                        <td width="35%">
+                            <button type="button" class="btn btn-outline-info btn-sm" style="width: 100%;" ng-click="showNavigationPage()">Страница навигации</button>
+                        </td>
+                        <td width="35%">
+<!--                            <button type="button" class="btn btn-outline-danger btn-sm" style="width: 100%;" onclick="location.href = 'logout'">Выход</button>-->
+                            <button type="button" class="btn btn-outline-danger btn-sm" style="width: 100%;" ng-click="tryLogout()">Выход</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"><b>Страницы:</b></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <a class="btn btn-outline-primary" ng-click="loadProducts(0, 30)">показать все</a>
+                            <a class="btn btn-outline-primary" ng-click="loadProducts(0, 5)">страница 1</a>
+                            <a class="btn btn-outline-primary" ng-click="loadProducts(-1 , 5)">&lt;&lt;</a>
+                            <a class="btn btn-outline-primary" ng-click="loadProducts(1, 5)">&gt;&gt;</a>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+
+        <h3 align="center">Список продуктов</h3>
+        <table class="table table-striped" width="80%" align="center">
+            <thead class="thead-light">
+        <tr>
+            <td><b>ID</b></td>
+            <td><b>Наименование продукта</b></td>
+            <td><b>Стоимость</b></td>
+            <td><b>Действие</b></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="p in ProductsList">
+            <td>{{p.id}}</td>
+            <td>{{p.title}}</td>
+            <td>{{p.price}}</td>
+            <td><button class="btn btn-success" ng-click="addProductToCart(p)">В корзину</button></td>
+        </tr>
+        <tr>
+            <td colspan="3"><b><i>Всего продуктов в списке:</i></b></td>
+            <td colspan="1" align="left"><b>{{ProductsList.length}}</b></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2 align="center">Корзина выбранных продуктов</h2>
+    <table class="table table-hover" cellpadding="0" cellspacing="0" ng-model="ProductsInCart">
+        <tr>
+            <td align="center"><b>ID</b></td>
+            <td align="center"><b>Наименование</b></td>
+            <td align="center"><b>Цена</b></td>
+            <td align="center"><b>Количество</b></td>
+            <td colspan="2" align="center"><b>Действие</b></td>
+        </tr>
+        <tr ng-repeat="p in ProductsInCart">
+            <td align="center">{{p.id}}</td>
+            <td>{{p.title}}</td>
+            <td align="center">{{p.price}}</td>
+            <td align="center">{{p.count}}</td>
+            <td align="center"><button type="button" class="btn btn-primary" ng-click="updateProduct(p, 1)">Добавить</button></td>
+            <td align="center"><button type="button" class="btn btn-warning" ng-click="deleteProductFromCart(p.id)">Удалить</button></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td colspan="4"><b><i>Всего в корзине наименованний товаров:</i></b></td>
+            <td align="center" align="right"><b>{{ProductsInCart.length}}</b></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td colspan="3"><b><i>Очистка корзины:</i></b></td>
+            <td align="center"><button type="button" class="btn btn-danger" ng-click="clearCart()">Очистить корзину</button></td>
+        </tr>
+    </table>
+</div>
